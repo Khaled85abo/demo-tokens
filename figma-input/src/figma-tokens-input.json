@@ -1,0 +1,12 @@
+{
+  "background-color": {
+    "value": "#cb4343",
+    "type": "color"
+  },
+  "tokenSetOrder": {
+    "0": {
+      "value": "global",
+      "type": "other"
+    }
+  }
+}
