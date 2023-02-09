@@ -14,6 +14,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "transform:tokens": "npx token-transformer figma-input/src/figma-tokens-output.json figma-input/src/figma-tokens-input.json --resolveRefernce false --expandTypography",
+    "build:styles": "npx style-dictionary build --config figma.config.cjs",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
