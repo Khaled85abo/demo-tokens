@@ -13,8 +13,10 @@ jobs:
         with:
           repository: ${{github.event.pull_request.head.repo.full_name}}
           ref: ${{github.event.pull_request.head.ref}}
-
       -name: Install Dependencies
+      -uses: actions/setup-node@1
+        with:
+          node-version: 12
         run: npm install
 
       -name: Run token-transformer
