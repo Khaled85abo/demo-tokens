@@ -1,6 +1,6 @@
 name: Process Figma Tokens PR
 
-on: pull-request
+on: pull_request_target
 
 jobs: 
   run_if:
@@ -9,26 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps: 
-      -uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           repository: ${{github.event.pull_request.head.repo.full_name}}
           ref: ${{github.event.pull_request.head.ref}}
-      -name: Install Dependencies
-      -uses: actions/setup-node@1
+      - uses: actions/setup-node@1
         with:
           node-version: 12
+      - name: install dependencies
         run: npm install
 
-      -name: Run token-transformer
-      run: npx token-transformer sd-input/src/figma-tokens-output.json sd-input/src/sd-input.json --resolveRefernce false --expandTypography
+      - name: Run token-transformer
+        run: npx token-transformer sd-input/src/figma-tokens-output.json sd-input/src/sd-input.json --resolveRefernce false --expandTypography
 
-      -name: Run style-dictionary
+      - name: Run style-dictionary
         run: npx style-dictionary build --config sd.config.cjs
 
-      -name: Commit changes
-       uses: EndBug/add-and-commit@v9
-       with: 
-        author_name: khaled
-        author_email: khaledabou1985@gmail.com
-        message: 'chore: style-dictionary output'
-        add: '.'
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with: 
+         author_name: khaled
+         author_email: khaledabou1985@gmail.com
+         message: 'chore: style-dictionary output'
+         add: '.'
